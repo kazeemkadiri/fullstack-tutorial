@@ -28,7 +28,13 @@ class LaunchAPI extends RESTDataSource {
       type: launch.rocket.rocket_type,
     },
   };
+ }
 }
+
+async getLaunchById({launchId}){
+  const response = await this.get("launches", {flight_number: launchId})
+  return this.launchReducer(response[0]);
 }
 
 module.exports = LaunchAPI;
+
